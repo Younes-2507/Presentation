@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Sigma Geometrie Calcul</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .program-description {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .code {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        pre {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Super Sigma Geometrie Calcul</h1>
+        <div class="program-description">
+            <p>Ce programme est une application graphique développée en Python utilisant la bibliothèque Tkinter pour effectuer divers calculs de géométrie, y compris les calculs 2D et 3D.</p>
+            <p>Il comprend également un quiz intégré pour tester les connaissances générales.</p>
+        </div>
+        <center><img src="projet-python_SuperSigmaGeometrieCalcul_AbdelliYounes_QotbAdam_P10/black_sigma.jpg" alt=""><img src="projet-python_SuperSigmaGeometrieCalcul_AbdelliYounes_QotbAdam_P10/white_sigma.jpg" alt=""></center>
+        <div class="code"><button id="toggleCodeBtn" onclick="toggleCode()">Afficher le code</button>
+
+            <pre><code id="codeSection" class="code" style="display: none;">
+                import tkinter
+import math 
+from math import pi
+from tkinter import *
+from tkinter import PhotoImage
+import tkinter as tk
+from tkinter import ttk
+
+fen=Tk()
+fen.configure(bg="black")
+fen.geometry("1200x700")
+fen.title("SUPER SIGMA GEOMETRIE CALCUL")
+
+
+canvas = Canvas(fen, width=400, height=300,borderwidth=0)
+canvas.pack()
+canvas.configure(bg="black")
+
+image_path = "black_sigma.jpg"  
+photo = PhotoImage(file=image_path)
+canvas.create_image(200, 150, image=photo)
+
+Forme=Entry(fen)
+
+
+
+def quiz():
+    global score
+
+
+
+
+
+# config the fen window
+    fen2 = tk.Tk()
+    fen2.geometry('300x200')
+    fen2.config(bg="#6CB4EE")
+    fen2.resizable(True,True)
+    fen2.title('Quiz')
+    reponse=[]
+
+    r2=["Mbappé","Victor Hugo","Edouard Manet","Zidane","Rousseau"]
+    r3=["Paris","Marseille","Mbappé","Rio"]
+    r4=["Stephen Curry","Lebron James","Michael Jordan","Younes"]
+    r5=["La France","L'Algérie","L'Italie","La Grèce","La Chine"]
+
+    label = Label(fen2,text="Qui est le plus grand de la classe ? :")
+    label.place(x=5, y=50)
+    label.config(bg="#6CB4EE")
+
+   
+    reponse = ttk.Combobox(fen2, textvariable=reponse)
+    reponse['values'] = ["Hugo","Alexandre","Younes (fais le bon choix)","Louay","Mbappé"]
+    reponse['state'] = 'normal'
+    reponse.pack(fill=tk.X, padx=5, pady=5)
+    
+    score = 0  
+
+    def verif():
+        global score  
+        if reponse.get() == "Alexandre":
+            label.configure(text="Bien joué.\n Quelle est la capitale de la France ?")
+            reponse['values'] = r3
+            score = score+1   
+        elif reponse.get() == "Paris":
+            label.configure(text="Ça c'est de la culture !\n Qui a écrit le célèbre roman Les Misérables ?")
+            reponse['values'] = r2
+            score = score+1
+        elif reponse.get() == "Victor Hugo":
+            label.configure(text="Pas mal\n Pour toi qui est le meilleur basketeur du monde ?")
+            reponse['values'] = r4
+            score = score+1
+        elif reponse.get() == "Lebron James":
+            reponse['values'] = r5
+            score += 1
+            label.configure(text="Voilà un avis réfléchi ! \n Quel est le meilleur pays du monde ?")
+        elif reponse.get() == "La Chine":
+            label.configure(text="Tu valides automatiquement le test\n +15OOO social credit ;)")  
+            score = score+1
+        else:
+            label.configure(text="NON, RECOMMENCE")
+
+        print(score)
+        resul.configure(text="Score: "+str(score))
+        resul.config(bg="#6CB4EE")
+
+    calcul = tk.Button(fen2, text="Valider", command=verif)
+    calcul.place(x=28, y=85)
+    resul = tk.Label(fen2, text="  ")
+    resul.config(bg="#6CB4EE")
+    resul.place(x=28, y=110)
+
+    fen2.mainloop()
+
+
+create=Button(fen,text="QUIZ",command=quiz)
+create.place(x=60,y=100)
+
+HORIZONTAL=Canvas(fen,width=1800,height=10,bg="#4169E1")
+HORIZONTAL.place(x=0,y=300)
+
+vertical1=Canvas(fen,width=20,height=480,bg="#4169E1")
+vertical1.place(x=425,y=300)
+
+vertical2=Canvas(fen,width=20,heigh=480,bg="#4169E1")
+vertical2.place(x=825,y=300)
+
+Formev=Label(fen,text="Forme 2D: ",fg="white",bg="black")
+Formev.place(x=28,y=360)
+Forme_d2=Entry(fen)#forme entrée par l'utilisateur
+Forme_d2.place(x=88,y=360)
+
+Coté=Label(fen,text="Coté \n (coté 1) : ",fg="white",bg="black")
+Coté.place(x=28,y=450)#titre
+
+cotev=Entry(fen,bg="white")
+cotev.place(x=88,y=450)#valeur de l'utilisateur
+
+Hauteur=Label(fen,text="Hauteur : ",fg="white",bg="black")
+Hauteur.place(x=28,y=600)#titre
+
+Hauteurv=Entry(fen,bg="white")
+Hauteurv.place(x=88,y=600)#valeur de l'utilisateur350
+
+longueur=Label(fen,text="Longueur \n (coté 2): ",fg="white",bg="black")
+longueur.place(x=28,y=500)#titre
+
+longueurv=Entry(fen,bg="white")
+longueurv.place(x=88,y=500)#valeur de l'utilisateur
+
+Largeur=Label(fen,text="Largeur  \n (coté 3): ",fg="white",bg="black")
+Largeur.place(x=28,y=550)#titre
+
+Largeurv=Entry(fen,bg="white")
+Largeurv.place(x=88,y=550)#valeur de l'utilisateur
+
+rayonv=Entry(fen,bg="white")
+rayonv.place(x=88,y=400)
+canvasrayon=Label(fen,text="Rayon :",bg="black",fg="white")
+canvasrayon.place(x=28,y=400)
+
+resulatd2=Canvas(fen,width=150,height=215,bg="white")
+resulatd2.place(x=225,y=400)#le canvas contenant les resulatats de tous les calculs
+
+canvasaire1=Label(fen,text="Aire = ...",bg="white")
+canvasaire1.place(x=245,y=450)
+canvasperimetre1=Label(fen,text="Périmétre = ...",bg="white")
+canvasperimetre1.place(x=245,y=520)
+  
+#FORMES 3D : (Rayon, cote, largeur,hauteur,longueur ):
+
+Formev3=Label(fen,text="Forme 3D: ",fg="white",bg="black")
+Formev3.place(x=458,y=400)
+
+Forme_d3=Entry(fen)#forme entrée par l'utilisateur
+Forme_d3.place(x=518,y=400)
+
+Coté3=Label(fen,text="Coté : ",fg="white",bg="black")
+Coté3.place(x=458,y=445)#titre
+
+cotev3=Entry(fen,bg="white")
+cotev3.place(x=518,y=445)#valeur de l'utilisateur
+
+Hauteur3=Label(fen,text="Hauteur : ",fg="white",bg="black")
+Hauteur3.place(x=458,y=490)#titre
+
+Hauteurv3=Entry(fen,bg="white")
+Hauteurv3.place(x=518,y=490)#valeur de l'utilisateur
+
+longueur3=Label(fen,text="Longueur : ",fg="white",bg="black")
+longueur3.place(x=458,y=535)#titre
+
+longueurv3=Entry(fen,bg="white")
+longueurv3.place(x=518,y=535)#valeur de l'utilisateur
+
+Largeur3=Label(fen,text="Largeur : ",fg="white",bg="black")
+Largeur3.place(x=458,y=575)#titre
+
+Largeurv3=Entry(fen,bg="white")
+Largeurv3.place(x=518,y=575)#valeur de l'utilisateur
+
+rayon3=Label(fen,text="Rayon :",fg="white",bg="black")
+rayon3.place(x=458,y=615)
+
+rayonv3=Entry(fen,bg="white")
+rayonv3.place(x=518,y=615)
+
+resulatd3=Canvas(fen,width=140,height=215,bg="white")
+resulatd3.place(x=675,y=400)#le canvas contenant les resulatats de tous les calculs
+
+canvasaire3=Label(fen,text="Aire = ...",bg="white")
+canvasaire3.place(x=675,y=450)
+canvasperimetre3=Label(fen,text="Périmétre = ...",bg="white")
+canvasperimetre3.place(x=675,y=520)
+canvasvolume3=Label(fen,text="Volume : ",bg="white")
+canvasvolume3.place(x=675,y=580)
+
+Forme_dispo=Label(fen,text="Liste des formes 2D et 3D disponibles",fg="white",bg="black")
+Forme_dispo.place(x=10,y=150)
+re=[]
+re = ttk.Combobox(fen, textvariable=re, width=30)
+re['values'] = ["triangle","carré","rectangle","cercle","sphère","cube","pavé droit","pyramide"]
+re['state'] = 'readonly'
+#re.pack(fill=tk.X, padx=5, pady=5)
+re.place(x=10,y=180)
+#SETTINGS :
+  
+def theme_blanc():
+
+    fen.config(bg="white")
+    canvas.configure(bg="white")
+
+    
+    image_path = "white_sigma.jpg"  
+    photo = PhotoImage(file=image_path)
+    canvas.create_image(200, 150, image=photo)
+
+    
+    labels = [a,b,c,d,color,Formev,Formev3,Forme_dispo,canvasrayon,titulo,rayon3, Coté, Hauteur, Largeur, longueur, Coté3, Hauteur3, Largeur3, longueur3,
+              canvasaire1, canvasperimetre1, resulatd2, canvasaire3, canvasperimetre3, resulatd3, canvasvolume3]
+
+    
+    for label in labels:
+        label.configure(bg="white", fg="black")
+    
+
+bw=Button(fen,text="white",bg="white",fg="black",command=theme_blanc)
+bw.place(x=10,y=50)
+#bw = button white, bb=button black
+  
+def theme_noir():
+
+    fen.config(bg="black")
+    canvas.configure(bg="white")
+
+    # Change the image to white_sigma
+    image_path = "black_sigma.jpg"  
+    photo = PhotoImage(file=image_path)
+    canvas.create_image(200, 150, image=photo)
+
+    # List of labels and canvases to modify
+    labels2 = [a,b,c,d,color,Formev,Formev3,Forme_dispo,rayon3,titulo,canvasrayon, Coté, Hauteur, Largeur, longueur, Coté3, Hauteur3, Largeur3, longueur3,
+               resulatd2, canvasaire3, canvasperimetre3, resulatd3, canvasvolume3]
+
+    # Update label configurations
+    for label in labels2:
+        label.configure(bg="black", fg="white")
+   
+  
+bb=Button(fen,text="Black",bg="white",fg="black",command=theme_noir)
+bb.place(x=60,y=50)
+
+
+def forme():
+    global rayonv
+    if Forme_d2.get()=="cercle" or Forme_d2.get()=="Cercle":
+        rayon=rayonv.get()
+        rayon=float(rayon)
+        aire_cercle = float(math.pi) * rayon * rayon
+        perimetre_cercle = 2 * float(math.pi) * rayon
+        canvasaire1.configure(text="Aire =%7.2f"%aire_cercle)
+        canvasperimetre1.configure(text="Perimetre =%7.2f"%perimetre_cercle)
+    if Forme_d2.get()=="rectangle" or Forme_d2.get()=="Rectangle":
+        longueur_rec=longueurv.get()
+        largeur_rec=Largeurv.get()
+        longueur_rec=float(longueur_rec)
+        largeur_rec=float(largeur_rec)
+        perimetre_rec = 2 * (longueur_rec+ largeur_rec)
+        aire_r = longueur_rec * largeur_rec
+        canvasaire1.configure(text="Aire =%7.2f"%aire_r)
+        canvasperimetre1.configure(text="Perimetre ="+str(perimetre_rec))
+    if Forme_d2.get()=="carré" or Forme_d2.get()=="Carré" or Forme_d2.get()=="carre" or Forme_d2.get()=="Carre":
+        cote=cotev.get()
+        perimetre_c = 4 * float(cote)
+        aire_c = float(cote) * float(cote)
+        canvasaire1.configure(text="Aire =%7.2f"%aire_c)
+        canvasperimetre1.configure(text="Périmètre ="+str(perimetre_c))
+    if Forme_d2.get()=="triangle" or Forme_d2.get()=="Triangle": 
+        c1=cotev.get()
+        base=cotev.get()
+        c2=longueurv.get()
+        c3=Largeurv.get()
+        hauteur=Hauteurv.get()
+        perimetre_t= float(c1) + float(c2) + float(c3)
+        base=float(base)
+        hauteur=float(hauteur)
+        aire_t= (base * hauteur)/2
+        canvasaire1.configure(text="Aire =%7.2f"%aire_t)
+        canvasperimetre1.configure(text="Périmètre ="+str(perimetre_t))
+    if  Forme_d2.get()!="triangle" and Forme_d2.get()!="Triangle" and Forme_d2.get()!="carré" and Forme_d2.get()!="Carré" and Forme_d2.get()!="carre" and Forme_d2.get()!="Carre"  and  Forme_d2.get()!="rectangle" and Forme_d2.get()!="Rectangle" and Forme_d2.get()!="cercle" and Forme_d2.get()!="Cercle" :
+        canvasaire1.configure(text="CETTE FORME N'EST\n PAS  PRISE EN CHARGE")
+        canvasperimetre1.configure(text="CETTE FORME N'EST\n PAS  PRISE EN CHARGE")
+def forme_3D():
+    if Forme_d3.get()=="cube" or Forme_d3.get()=="Cube":
+        cote=cotev3.get()
+        perimetre_cube= float(cote) * 12
+        volume_c = float(cote) ** 3
+        canvasperimetre3.configure(text="Périmètre ="+str(perimetre_cube))
+        canvasvolume3.configure(text="Volume =%7.2f"%volume_c)
+        canvasaire3.configure(text="Aire = ...")
+    if Forme_d3.get()=="pavé droit" or Forme_d3.get()=="Pavé droit":
+        largeur=Largeurv3.get()
+        longueur=longueurv3.get()
+        hauteur=Hauteurv3.get()
+        volume_p = float(largeur) * float(longueur) * float(hauteur)
+        perimetre_pavé = 2 * float(largeur) + 2 * float(longueur)
+        canvasvolume3.configure(text="Volume =%7.2f"%volume_p)
+        canvasperimetre3.configure(text="Périmètre =%7.2f"%perimetre_pavé)
+        canvasaire3.configure(text="Aire = ...")
+    if Forme_d3.get()=="sphère" or Forme_d3.get()=="Sphère":
+        rayon=rayonv3.get()
+        rayon=float(rayon)
+        volume_sphere = (4/3) * float(math.pi) * rayon**3
+        aire_sphere = 4 * float(math.pi) * rayon**2 
+        canvasvolume3.configure(text="Volume =%7.2f"%volume_sphere)
+        canvasaire3.configure(text="Aire =%7.2f"%aire_sphere)
+        canvasperimetre3.configure(text="Périmètre = ...")
+    if Forme_d3.get()=="pyramide" or Forme_d3.get()=="Pyramide":
+        cote=cotev3.get()
+        cote=float(cote)
+        hauteur=Hauteurv3.get()
+        aire_base = cote*cote
+        volume_pyramide = (1/3) * aire_base * float(hauteur)
+        canvasvolume3.configure(text="Volume =%7.2f"%volume_pyramide)
+        canvasaire3.configure(text="AIre = ...")
+        canvasperimetre3.configure(text="Perimètre = ...")
+    if Forme_d3.get()!="pyramide" and Forme_d3.get()!="Pyramide" and Forme_d3.get()!="sphère" and Forme_d3.get()!="Sphère" and Forme_d3.get()!="cube" and Forme_d3.get()!="Cube" and Forme_d3.get()!="pavé droit" and Forme_d3.get()!="Pavé droit" :
+        canvasvolume3.configure(text="CETTE FORME N'EST\n PAS  PRISE EN CHARGE")
+        canvasperimetre3.configure(text="CETTE FORME N'EST\n PAS  PRISE EN CHARGE")
+        canvasaire3.configure(text="CETTE FORME N'EST\n PAS  PRISE EN CHARGE")
+calcul=Button(fen,text="Calcul",command=forme)
+calcul.place(x=280,y=325)
+calcul3=Button(fen,text="Calcul_3D",command=forme_3D)
+calcul3.place(x=500,y=325)
+
+titulo=Label(fen,text="Dessinez avec des rectangles\n Exprimez-vous librement !",fg='white',bg='black')
+titulo.place(x=930,y=325)
+#dessin : 
+dessin=Canvas(fen,height=297,width=500,bg="#FAF9F6")
+dessin.place(x=842,y=0)
+color=Label(fen,text='Couleur : ',fg='white',bg='black')
+color.place(x=850,y=350+20)
+colorv=Entry(fen)
+colorv.place(x=950,y=350+20)
+
+a=Label(fen,text="POINT 1 (x) : ",fg='white',bg='black')
+a.place(x=850,y=400+20)
+av=Entry(fen)
+av.place(x=950,y=400+20)
+b=Label(fen,text="POINT 1(y) : ",fg='white',bg='black')
+b.place(x=850,y=450+20)
+bv=Entry(fen)
+bv.place(x=950,y=450+20)
+c=Label(fen,text="POINT 2 (x) : ",fg='white',bg='black')
+c.place(x=850,y=500+20)
+cv=Entry(fen)
+cv.place(x=950,y=500+20)
+d=Label(fen,text="POINT 2 (y): ",fg='white',bg='black')
+d.place(x=850,y=550+20)
+dv=Entry(fen)
+dv.place(x=950,y=550+20)
+
+def creer():
+    global dessin,des
+    des=dessin.create_rectangle(float(av.get()),float(bv.get()),float(cv.get()),float(dv.get()),fill=colorv.get())
+    
+
+        
+
+def effacer():
+    global des
+    dessin.delete(des)
+
+b1=Button(fen,text="Créer",command=creer)
+b1.place(x=1150,y=600)
+
+b2=Button(fen,text="effacer",command=effacer)
+b2.place(x=1150,y=550)
+
+def quitter():
+    global oui,non
+    sur=Tk()
+    sur.geometry("80x120")
+    qu=Label(sur,text="Êtes-vous sûr(e)s ?")
+    qu.place(x=10,y=10)
+    def ouaaaa():
+        fen.destroy()
+        sur.destroy()
+    def ooooo():
+        sur.destroy()
+    non=Button(sur,text="NON !",bg="green",fg="white",command=ooooo)
+    non.place(x=25,y=80)
+    oui=Button(sur,text="OUI !",bg="red",fg="white",command=ouaaaa)
+    oui.place(x=25,y=40)
+    
+
+fermer=Button(fen,text="Fermer",command=quitter,bg="white",fg="black")
+fermer.place(x=10,y=100)
+
+fen.mainloop()
+
+     
+
+            </code></pre>
+        </div>
+        <p>Pour exécuter ce programme, assurez-vous d'avoir Python installé sur votre ordinateur. Copiez simplement le code Python ci-dessus dans un fichier .py et exécutez-le.</p>
+    </div>
+    <p> Le projet Super Sigma Géométrie Calcul représente une solution complète pour les calculs d'aire, de volume et de périmètre de formes géométriques en 2D et 3D. En se basant principalement sur la bibliothèque tkinter, cette application offre une interface intuitive et conviviale pour effectuer une variété de calculs géométriques.</p>
+
+<p> - Parmi les formes disponibles, on retrouve le carré, le rectangle, le triangle, le cercle, le pavé droit, le cube, la sphère et la pyramide. L'utilisateur peut sélectionner la forme désirée et entrer les dimensions requises, ce qui déclenche le calcul automatique du périmètre, de l'aire ou du volume correspondant. Le programme veille à ce que toutes les données nécessaires soient fournies avant d'effectuer les calculs, et en cas de données manquantes ou de forme non prise en charge, il affiche un message d'erreur pour guider l'utilisateur.</p>
+
+<p> - En plus de cette fonctionnalité principale, le projet intègre un espace de dessin qui permet à l'utilisateur de créer des rectangles en spécifiant les coordonnées des points. Cette fonctionnalité offre une dimension pratique et ludique à l'application, permettant aux utilisateurs de visualiser graphiquement les formes qu'ils manipulent.</p>
+
+<p> - Une caractéristique notable du projet est la possibilité de personnaliser l'apparence de l'interface graphique avec deux thèmes différents, LIGHT et DARK. Cette fonctionnalité permet aux utilisateurs d'adapter l'apparence de l'application à leurs préférences visuelles, ce qui améliore l'expérience utilisateur.</p>
+
+<p> - En outre, le projet comprend une fonctionnalité de quiz qui offre aux utilisateurs une opportunité d'apprendre et de tester leurs connaissances en géométrie. Cette fonctionnalité ajoute une dimension éducative à l'application, en faisant d'elle un outil polyvalent pour les étudiants et les amateurs de mathématiques.</p>
+
+<p> - Bien que certaines fonctionnalités prévues, telles qu'un "Easter-egg" ou l'ajout de formes supplémentaires, n'aient pas pu être implémentées en raison de limitations techniques, le projet dans son ensemble représente une expérience enrichissante pour les développeurs. Il leur a permis d'explorer et d'approfondir leurs compétences en Python, tout en générant de nouvelles idées pour des projets futurs dans le domaine de l'informatique et de la programmation.</p>
+<center><a href="https://mega.nz/file/bARyjbhI#MKieyDAxTaD0Ypv--rBLvBoLIjqm5Q2Gomlc0lod8Jk" class="download-button">Telecharger</a></center>
+</body>
+<script>
+    function toggleCode() {
+        var codeSection = document.getElementById("codeSection");
+        var toggleBtn = document.getElementById("toggleCodeBtn");
+
+        if (codeSection.style.display === "none") {
+            codeSection.style.display = "block";
+            toggleBtn.innerText = "Masquer le code";
+        } else {
+            codeSection.style.display = "none";
+            toggleBtn.innerText = "Afficher le code";
+        }
+    }
+    
+</script>
+<style>
+    .download-button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .download-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</html>
